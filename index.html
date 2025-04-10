@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>網頁示例</title> <!-- 設定網頁標題 -->
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2b1b1b; /* 設定背景顏色為暗紅色調 */
+            color: white; /* 設定文字顏色為白色 */
+        }
+        .navbar {
+            display: flex; /* 使用 Flexbox 來對齊元素 */
+            align-items: center; /* 垂直置中 */
+            padding: 10px 20px; /* 設定內邊距 */
+            background-color: #000000; /* 設定導覽欄背景顏色為黑色 */
+            position: relative; /* 讓跑馬燈相對定位 */
+        }
+        .logo img {
+            height: 80px; /* 調整 LOGO 圖片的高度，使其變大 */
+        }
+        .marquee-container {
+            flex-grow: 1; /* 讓跑馬燈區域自動填滿可用空間 */
+            overflow: hidden; /* 隱藏超出範圍的文字 */
+            white-space: nowrap; /* 確保文字不換行 */
+            position: relative;
+            margin: 0 100px; /* 調整跑馬燈與 LOGO、首頁之間的間距 */
+        }
+        .marquee-text {
+            display: inline-block;
+            animation: marqueeAnimation 6s linear infinite; /* 讓文字從右到左滑動，無限循環 */
+        }
+        @keyframes marqueeAnimation {
+            from { transform: translateX(100%); } /* 起始位置在右側 */
+            to { transform: translateX(-100%); } /* 結束位置在左側 */
+        }
+        .nav-links {
+            list-style: none; /* 移除列表的預設樣式 */
+            padding: 0;
+            display: flex; /* 讓列表橫向排列 */
+        }
+        .nav-links li {
+            margin: 0 10px; /* 設定按鈕間距 */
+        }
+        .nav-links a {
+            text-decoration: none; /* 移除超連結的底線 */
+            color: white; /* 設定文字顏色為白色 */
+            padding: 8px 12px; /* 設定按鈕內邊距 */
+            transition: background 0.3s; /* 設定背景色變化的過渡效果 */
+        }
+        .nav-links a:hover {
+            background-color: #8b0000; /* 滑鼠懸停時變為更深的紅色 */
+            border-radius: 5px; /* 設定圓角 */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar"> <!-- 導覽欄 -->
+        <div class="logo">
+            <img src="logo.png" alt="網站 Logo"> <!-- LOGO 圖片 -->
+        </div>
+        <div class="marquee-container"> <!-- 跑馬燈區域 -->
+            <div class="marquee-text"> <!-- 內部滾動文字 -->
+                <span>您好歡迎光臨&nbsp;&nbsp;&nbsp;&nbsp;本賣場為魔術道具商場&nbsp;&nbsp;&nbsp;&nbsp;謝謝惠顧</span>
+            </div>
+        </div>
+        <ul class="nav-links"> <!-- 導覽連結列表 -->
+            <li><a href="#home">首頁</a></li> <!-- 連結到首頁 -->
+            <li><a href="#products">商品目錄</a></li> <!-- 連結到商品目錄 -->
+            <li><a href="#events">活動資訊</a></li> <!-- 連結到活動資訊 -->
+            <li><a href="#courses">課程資訊</a></li> <!-- 連結到課程資訊 -->
+            <li><a href="https://www.youtube.com/watch?v=6kdt5S14jg4" target="_blank">聯絡我們</a></li> <!-- 點擊後跳轉到 YouTube -->
+        </ul>
+    </nav>
+</body>
+</html>
