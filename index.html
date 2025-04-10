@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
+    <link rel="icon" href="Bl.png" type="image/png"> <!-- 設定網頁標題旁的圖示為黑桃 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>網頁示例</title> <!-- 設定網頁標題 -->
+    <title>Magic_K 魔術</title> <!-- 設定網頁標題 -->
     <style>
         body {
             margin: 0;
@@ -33,16 +34,8 @@
             animation: marqueeAnimation 6s linear infinite; /* 讓文字從右到左滑動，無限循環 */
         }
         @keyframes marqueeAnimation {
-            0% { transform: translateX(100%); }
-            90% { transform: translateX(-100%); }
-            100% { transform: translateX(-100%); opacity: 0; } /* 讓文字消失 */
-        }
-        .marquee-text {
-            animation: marqueeLoop 7s linear infinite; /* 增加停頓 1s 後再重啟 */
-        }
-        @keyframes marqueeLoop {
-            0%, 90% { transform: translateX(100%); opacity: 1; }
-            100% { transform: translateX(-100%); opacity: 0; }
+            from { transform: translateX(100%); } /* 起始位置在右側 */
+            to { transform: translateX(-100%); } /* 結束位置在左側 */
         }
         .nav-links {
             list-style: none; /* 移除列表的預設樣式 */
