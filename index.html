@@ -33,8 +33,16 @@
             animation: marqueeAnimation 6s linear infinite; /* 讓文字從右到左滑動，無限循環 */
         }
         @keyframes marqueeAnimation {
-            from { transform: translateX(100%); } /* 起始位置在右側 */
-            to { transform: translateX(-100%); } /* 結束位置在左側 */
+            0% { transform: translateX(100%); }
+            90% { transform: translateX(-100%); }
+            100% { transform: translateX(-100%); opacity: 0; } /* 讓文字消失 */
+        }
+        .marquee-text {
+            animation: marqueeLoop 7s linear infinite; /* 增加停頓 1s 後再重啟 */
+        }
+        @keyframes marqueeLoop {
+            0%, 90% { transform: translateX(100%); opacity: 1; }
+            100% { transform: translateX(-100%); opacity: 0; }
         }
         .nav-links {
             list-style: none; /* 移除列表的預設樣式 */
