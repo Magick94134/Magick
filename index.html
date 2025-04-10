@@ -4,7 +4,7 @@
     <link rel="icon" href="Bl.png" type="image/png"> <!-- 設定網頁標題旁的圖示為黑桃 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic_K 魔術</title> <!-- 設定網頁標題 -->
+    <title>Magic_k魔術</title> <!-- 設定網頁標題 -->
     <style>
         body {
             margin: 0;
@@ -27,33 +27,59 @@
             overflow: hidden; /* 隱藏超出範圍的文字 */
             white-space: nowrap; /* 確保文字不換行 */
             position: relative;
-            margin: 0 100px; /* 調整跑馬燈與 LOGO、首頁之間的間距 */
+            margin: 0 50px; /* 調整跑馬燈與 LOGO、首頁之間的間距 */
         }
         .marquee-text {
             display: inline-block;
-            animation: marqueeAnimation 6s linear infinite; /* 讓文字從右到左滑動，無限循環 */
+            animation: marqueeAnimation 13s linear infinite; /* 讓文字從右到左滑動，無限循環 */
         }
         @keyframes marqueeAnimation {
-            from { transform: translateX(100%); } /* 起始位置在右側 */
-            to { transform: translateX(-100%); } /* 結束位置在左側 */
+            0% { transform: translateX(100%); }
+            90% { transform: translateX(-100%); }
+            100% { transform: translateX(-100%); opacity: 0; } /* 讓文字消失 */
         }
         .nav-links {
-            list-style: none; /* 移除列表的預設樣式 */
+            list-style: none;
             padding: 0;
-            display: flex; /* 讓列表橫向排列 */
+            display: flex;
         }
         .nav-links li {
-            margin: 0 10px; /* 設定按鈕間距 */
+            margin: 0 10px;
+            position: relative; /* 讓下拉選單絕對定位於此 */
         }
         .nav-links a {
-            text-decoration: none; /* 移除超連結的底線 */
-            color: white; /* 設定文字顏色為白色 */
-            padding: 8px 12px; /* 設定按鈕內邊距 */
-            transition: background 0.3s; /* 設定背景色變化的過渡效果 */
+            text-decoration: none;
+            color: white;
+            padding: 8px 12px;
+            transition: background 0.3s;
         }
         .nav-links a:hover {
-            background-color: #8b0000; /* 滑鼠懸停時變為更深的紅色 */
-            border-radius: 5px; /* 設定圓角 */
+            background-color: #8b0000;
+            border-radius: 5px;
+        }
+        /* 下拉選單樣式 */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #333;
+            border-radius: 5px;
+            min-width: 100px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+        .dropdown a:hover {
+            background-color: #555;
+        }
+        /* 滑鼠懸停時顯示下拉選單 */
+        .nav-links li:hover .dropdown {
+            display: block;
         }
     </style>
 </head>
@@ -64,15 +90,21 @@
         </div>
         <div class="marquee-container"> <!-- 跑馬燈區域 -->
             <div class="marquee-text"> <!-- 內部滾動文字 -->
-                <span>您好歡迎光臨&nbsp;&nbsp;&nbsp;&nbsp;本賣場為魔術道具商場&nbsp;&nbsp;&nbsp;&nbsp;謝謝惠顧</span>
+                <span>歡迎來到Magic_K 魔術&nbsp;&nbsp;&nbsp;&nbsp;專業魔術道具、魔術教學、魔術演出&nbsp;&nbsp;&nbsp;&nbsp;學習魔術，感受神奇魅力，立即選購魔術教學課程！</span>
             </div>
         </div>
         <ul class="nav-links"> <!-- 導覽連結列表 -->
-            <li><a href="#home">首頁</a></li> <!-- 連結到首頁 -->
-            <li><a href="#products">商品目錄</a></li> <!-- 連結到商品目錄 -->
-            <li><a href="#events">活動資訊</a></li> <!-- 連結到活動資訊 -->
-            <li><a href="#courses">課程資訊</a></li> <!-- 連結到課程資訊 -->
-            <li><a href="https://www.youtube.com/watch?v=6kdt5S14jg4" target="_blank">聯絡我們</a></li> <!-- 點擊後跳轉到 YouTube -->
+            <li><a href="#home">首頁</a></li>
+            <li><a href="#products">商品目錄</a></li>
+            <li><a href="#events">活動資訊</a></li>
+            <li><a href="#courses">課程資訊</a></li>
+            <li>
+                <a href="#">聯絡我們</a>
+                <div class="dropdown"> <!-- 下拉選單 -->
+                    <a href="https://line.me/ti/p/Q9YdxdK4Lk" target="_blank">LINE</a>
+                    <a href="https://www.instagram.com/magic_k_club?igsh=dmMzeWhydzVsY29t&utm_source=qr" target="_blank">IG</a>
+                </div>
+            </li>
         </ul>
     </nav>
 </body>
