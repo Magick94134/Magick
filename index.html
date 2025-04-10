@@ -1,42 +1,32 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <link rel="icon" href="Bl.png" type="image/png"> <!-- 設定網頁標題旁的圖示為黑桃 -->
+    <link rel="icon" href="Bl.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic_k魔術</title> <!-- 設定網頁標題 -->
+    <title>Magic_k魔術</title>
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #2b1b1b; /* 設定背景顏色為暗紅色調 */
-            color: white; /* 設定文字顏色為白色 */
+            background-color: #2b1b1b;
+            color: white;
         }
         .navbar {
-            display: flex; /* 使用 Flexbox 來對齊元素 */
-            align-items: center; /* 垂直置中 */
-            padding: 10px 20px; /* 設定內邊距 */
-            background-color: #000000; /* 設定導覽欄背景顏色為黑色 */
-            position: relative; /* 讓跑馬燈相對定位 */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #000;
+            position: relative;
         }
         .logo img {
-            height: 80px; /* 調整 LOGO 圖片的高度，使其變大 */
+            height: 80px;
         }
-        .marquee-container {
-            flex-grow: 1; /* 讓跑馬燈區域自動填滿可用空間 */
-            overflow: hidden; /* 隱藏超出範圍的文字 */
-            white-space: nowrap; /* 確保文字不換行 */
-            position: relative;
-            margin: 0 50px; /* 調整跑馬燈與 LOGO、首頁之間的間距 */
-        }
-        .marquee-text {
-            display: inline-block;
-            animation: marqueeAnimation 13s linear infinite; /* 讓文字從右到左滑動，無限循環 */
-        }
-        @keyframes marqueeAnimation {
-            0% { transform: translateX(100%); }
-            90% { transform: translateX(-100%); }
-            100% { transform: translateX(-100%); opacity: 0; } /* 讓文字消失 */
+        .menu-icon {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
         }
         .nav-links {
             list-style: none;
@@ -45,7 +35,7 @@
         }
         .nav-links li {
             margin: 0 10px;
-            position: relative; /* 讓下拉選單絕對定位於此 */
+            position: relative;
         }
         .nav-links a {
             text-decoration: none;
@@ -57,7 +47,6 @@
             background-color: #8b0000;
             border-radius: 5px;
         }
-        /* 下拉選單樣式 */
         .dropdown {
             display: none;
             position: absolute;
@@ -77,35 +66,76 @@
         .dropdown a:hover {
             background-color: #555;
         }
-        /* 滑鼠懸停時顯示下拉選單 */
         .nav-links li:hover .dropdown {
             display: block;
+        }
+        .marquee-container {
+            flex-grow: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            margin: 0 50px;
+        }
+        .marquee-text {
+            display: inline-block;
+            animation: marqueeAnimation 13s linear infinite;
+        }
+        @keyframes marqueeAnimation {
+            0% { transform: translateX(100%); }
+            90% { transform: translateX(-100%); }
+            100% { transform: translateX(-100%); opacity: 0; }
+        }
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: #000;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links li {
+                margin: 10px 0;
+            }
+            .menu-icon {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar"> <!-- 導覽欄 -->
+    <nav class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="網站 Logo"> <!-- LOGO 圖片 -->
+            <img src="logo.png" alt="網站 Logo">
         </div>
-        <div class="marquee-container"> <!-- 跑馬燈區域 -->
-            <div class="marquee-text"> <!-- 內部滾動文字 -->
-                <span>歡迎來到Magic_K 魔術&nbsp;&nbsp;&nbsp;&nbsp;專業魔術道具、魔術教學、魔術演出&nbsp;&nbsp;&nbsp;&nbsp;學習魔術，感受神奇魅力，立即選購魔術教學課程！</span>
-            </div>
+        <div class="marquee-container">
+            <div class="marquee-text">歡迎來到Magic_K 魔術&nbsp;&nbsp;&nbsp;&nbsp;專業魔術道具、魔術教學、魔術演出&nbsp;&nbsp;&nbsp;&nbsp;學習魔術，感受神奇魅力，立即選購魔術教學課程！</div>
         </div>
-        <ul class="nav-links"> <!-- 導覽連結列表 -->
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links">
             <li><a href="#home">首頁</a></li>
             <li><a href="#products">商品目錄</a></li>
             <li><a href="#events">活動資訊</a></li>
             <li><a href="#courses">課程資訊</a></li>
             <li>
                 <a href="#">聯絡我們</a>
-                <div class="dropdown"> <!-- 下拉選單 -->
+                <div class="dropdown">
                     <a href="https://line.me/ti/p/Q9YdxdK4Lk" target="_blank">LINE</a>
                     <a href="https://www.instagram.com/magic_k_club?igsh=dmMzeWhydzVsY29t&utm_source=qr" target="_blank">IG</a>
                 </div>
             </li>
         </ul>
     </nav>
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
