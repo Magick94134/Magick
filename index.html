@@ -4,30 +4,48 @@
     <link rel="icon" href="Bl.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic_k魔術</title>
+    <title>Magic_k 魔術表演</title>
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #2b1b1b;
             color: white;
+            text-align: center;
         }
+
+        /* 設定導航欄 */
         .navbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
             background-color: #000;
-            position: relative;
+            flex-wrap: wrap;
         }
         .logo img {
-            height: 80px;
+            height: 60px;
         }
-        .menu-icon {
-            display: none;
-            font-size: 30px;
-            cursor: pointer;
+
+        /* 頁面跑馬燈 */
+        .marquee-container {
+            flex-grow: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 30px;
         }
+        .marquee-text {
+            display: inline-block;
+            animation: marqueeAnimation 13s linear infinite;
+            font-size: 16px;
+            opacity: 1;
+        }
+        @keyframes marqueeAnimation {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* 導航欄的連結 */
         .nav-links {
             list-style: none;
             padding: 0;
@@ -47,6 +65,8 @@
             background-color: #8b0000;
             border-radius: 5px;
         }
+
+        /* 下拉選單樣式 */
         .dropdown {
             display: none;
             position: absolute;
@@ -69,60 +89,74 @@
         .nav-links li:hover .dropdown {
             display: block;
         }
-        .marquee-container {
-            flex-grow: 1;
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-            margin: 0 50px;
-        }
-        .marquee-text {
-            display: inline-block;
-            animation: marqueeAnimation 13s linear infinite;
-        }
-        @keyframes marqueeAnimation {
-            0% { transform: translateX(100%); }
-            90% { transform: translateX(-100%); }
-            100% { transform: translateX(-100%); opacity: 0; }
-        }
-        @media screen and (max-width: 768px) {
+
+        /* 手機版樣式 */
+        @media (max-width: 768px) {
+            /* 手機版的導航欄 */
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+            }
             .nav-links {
                 display: none;
                 flex-direction: column;
-                background: #000;
+                width: 100%;
                 position: absolute;
                 top: 60px;
                 right: 0;
-                width: 100%;
-                text-align: center;
-                padding: 10px 0;
-            }
-            .nav-links.active {
-                display: flex;
+                background-color: #000;
+                border-radius: 10px;
             }
             .nav-links li {
-                margin: 10px 0;
+                text-align: center;
             }
+            .nav-links a {
+                padding: 12px;
+                width: 100%;
+                border-bottom: 1px solid #555;
+            }
+            /* 手機的漢堡選單 */
             .menu-icon {
                 display: block;
+                cursor: pointer;
+                font-size: 30px;
+            }
+            .menu-icon.active + .nav-links {
+                display: flex;
             }
         }
+
+        /* 電腦版樣式：隱藏手機版的漢堡選單 */
+        @media (min-width: 769px) {
+            .menu-icon {
+                display: none;
+            }
+        }
+
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="網站 Logo">
+            <a href="index.html"><img src="logo.png" alt="網站 Logo"></a>
         </div>
+
+        <!-- ✅ 跑馬燈區塊 -->
         <div class="marquee-container">
-            <div class="marquee-text">歡迎來到Magic_K 魔術&nbsp;&nbsp;&nbsp;&nbsp;專業魔術道具、魔術教學、魔術演出&nbsp;&nbsp;&nbsp;&nbsp;學習魔術，感受神奇魅力，立即選購魔術教學課程！</div>
+            <div class="marquee-text">
+                <span>歡迎來到Magic_K 魔術&nbsp;&nbsp;&nbsp;&nbsp;專業魔術道具、魔術教學、魔術演出&nbsp;&nbsp;&nbsp;&nbsp;學習魔術，感受神奇魅力，立即選購魔術教學課程！</span>
+            </div>
         </div>
+
+        <!-- 手機版漢堡選單按鈕 -->
         <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+        <!-- 手機版的導航列表 -->
         <ul class="nav-links">
-            <li><a href="#home">首頁</a></li>
-            <li><a href="./products.html">商品目錄</a></li>
-            <li><a href="./events.html">活動資訊</a></li>
-            <li><a href="./courses.html">課程資訊</a></li>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="products.html">商品目錄</a></li>
+            <li><a href="events.html">活動資訊</a></li>
+            <li><a href="courses.html">課程資訊</a></li>
             <li>
                 <a href="#">聯絡我們</a>
                 <div class="dropdown">
@@ -132,9 +166,18 @@
             </li>
         </ul>
     </nav>
+
+    <!-- 主內容區域 -->
+    <h1>歡迎來到Magic_k 魔術世界！</h1>
+    <p>探索各種魔術道具、教學與演出，學習如何成為一位魔術師！</p>
+
     <script>
+        // 手機版漢堡選單切換
         function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('active');
+            const menuIcon = document.querySelector('.menu-icon');
+            const navLinks = document.querySelector('.nav-links');
+            menuIcon.classList.toggle('active');
+            navLinks.classList.toggle('active');
         }
     </script>
 </body>
