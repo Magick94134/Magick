@@ -1,38 +1,224 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>我的連結頁</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      background-color: #f9f9f9;
-      padding: 50px;
-    }
-    h1 {
-      margin-bottom: 30px;
-    }
-    .link {
-      display: block;
-      margin: 15px auto;
-      padding: 15px 25px;
-      background-color: #007bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      width: 250px;
-    }
-    .link:hover {
-      background-color: #0056b3;
-    }
-  </style>
+    <link rel="icon" href="Bl.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic_k 商品目錄</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2b1b1b;
+            color: white;
+            text-align: center;
+        }
+
+        /* 設定導航欄 */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #000;
+            flex-wrap: wrap;
+        }
+        .logo img {
+            height: 60px;
+        }
+
+        /* 頁面跑馬燈 */
+        .marquee-container {
+            flex-grow: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 30px;
+        }
+        .marquee-text {
+            display: inline-block;
+            animation: marqueeAnimation 13s linear infinite;
+            font-size: 16px;
+            opacity: 1;
+        }
+        @keyframes marqueeAnimation {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* 導航欄的連結 */
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+        .nav-links li {
+            margin: 0 10px;
+            position: relative;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 12px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover {
+            background-color: #8b0000;
+            border-radius: 5px;
+        }
+
+        /* 下拉選單樣式 */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #333;
+            border-radius: 5px;
+            min-width: 100px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+        .dropdown a:hover {
+            background-color: #555;
+        }
+        .nav-links li:hover .dropdown {
+            display: block;
+        }
+
+        /* 商品網格 */
+        .container {
+            padding: 20px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .product {
+            background: #444;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .product h3 {
+            margin: 10px 0;
+        }
+
+        /* 手機版樣式 */
+        @media (max-width: 768px) {
+            /* 手機版的導航欄 */
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: #000;
+                border-radius: 10px;
+            }
+            .nav-links li {
+                text-align: center;
+            }
+            .nav-links a {
+                padding: 12px;
+                width: 100%;
+                border-bottom: 1px solid #555;
+            }
+            /* 手機的漢堡選單 */
+            .menu-icon {
+                display: block;
+                cursor: pointer;
+                font-size: 30px;
+            }
+            .menu-icon.active + .nav-links {
+                display: flex;
+            }
+        }
+
+        /* 電腦版樣式：隱藏手機版的漢堡選單 */
+        @media (min-width: 769px) {
+            .menu-icon {
+                display: none;
+            }
+        }
+
+    </style>
 </head>
 <body>
-  <h1>我的常用連結</h1>
-  <a class="link" href="https://tw.shp.ee/JEXpzek" target="_blank">蝦皮商店連結</a>
-  <a class="link" href="https://www.ruten.com.tw/store/easy_diy/" target="_blank">露天商店連結</a>
-  <a class="link" href="https://line.me/ti/p/Xx9E0E_w2h" target="_blank">加入我的 LINE</a>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="網站 Logo"></a>
+        </div>
+
+        <!-- ✅ 跑馬燈區塊 -->
+        <div class="marquee-container">
+            <div class="marquee-text">
+                <span>歡迎來到Magic_K 魔術&nbsp;&nbsp;&nbsp;&nbsp;專業魔術道具、魔術教學、魔術演出&nbsp;&nbsp;&nbsp;&nbsp;學習魔術，感受神奇魅力，立即選購魔術教學課程！</span>
+            </div>
+        </div>
+
+        <!-- 手機版漢堡選單按鈕 -->
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+        <!-- 手機版的導航列表 -->
+        <ul class="nav-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="products.html">魔術道具</a></li>
+            <li><a href="events.html">活動資訊</a></li>
+            <li><a href="courses.html">課程資訊</a></li>
+            <li>
+                <a href="#">聯絡我們</a>
+                <div class="dropdown">
+                    <a href="https://line.me/ti/p/Q9YdxdK4Lk" target="_blank">LINE</a>
+                    <a href="https://www.instagram.com/magic_k_club?igsh=dmMzeWhydzVsY29t&utm_source=qr" target="_blank">IG</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>課程資訊</h1>
+        <div class="product-grid">
+            <div class="product">
+                <img src="product1.jpg" alt="商品1">
+                <h3>魔術撲克</h3>
+                <p>專業魔術撲克，適合各類魔術表演</p>
+            </div>
+            <div class="product">
+                <img src="product2.jpg" alt="商品2">
+                <h3>消失硬幣道具</h3>
+                <p>讓硬幣瞬間消失的魔術道具</p>
+            </div>
+            <div class="product">
+                <img src="product3.jpg" alt="商品3">
+                <h3>魔術繩</h3>
+                <p>多功能魔術繩，適合各種變化魔術</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 手機版漢堡選單切換
+        function toggleMenu() {
+            const menuIcon = document.querySelector('.menu-icon');
+            const navLinks = document.querySelector('.nav-links');
+            menuIcon.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
